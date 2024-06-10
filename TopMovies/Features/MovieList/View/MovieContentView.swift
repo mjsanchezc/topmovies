@@ -53,10 +53,12 @@ struct MovieContentView: View {
                             language: $filterLanguage,
                             minVote: $filterMinVote,
                             maxVote: $filterMaxVote,
-                            applyFilters: applyFilters
+                            applyFilters: applyFilters,
+                            availableLanguages: movieViewModel.availableLanguages
                         )
                     }
                 }
+                .padding()
 
                 List(searchText.isEmpty ? movieViewModel.filteredMovies : movieViewModel.searchResults) { movie in
                     HStack {

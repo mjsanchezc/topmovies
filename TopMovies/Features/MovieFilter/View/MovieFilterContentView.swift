@@ -12,8 +12,11 @@ struct MovieFilterContentView: View {
     @Binding var language: String?
     @Binding var minVote: Double?
     @Binding var maxVote: Double?
+    
     @Environment(\.presentationMode) var presentationMode
+    
     var applyFilters: () -> Void
+    var availableLanguages: [String: String]
 
     var body: some View {
         NavigationView {
@@ -28,10 +31,13 @@ struct MovieFilterContentView: View {
                 }
 
                 Section(header: Text("Language")) {
-                    TextField("Original Language", text: Binding(
-                        get: { self.language ?? "" },
-                        set: { self.language = $0 }
-                    ))
+                    Picker("Original Language", selection: $language) {
+                        Text("Any").tag(String?.none)
+                        ForEach(availableLanguages.keys.sorted(), id: \.self) { code in
+                            Text("\(availableLanguages[code] ?? "")").tag(String?.some(code))
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
 
                 Section(header: Text("Vote Average")) {

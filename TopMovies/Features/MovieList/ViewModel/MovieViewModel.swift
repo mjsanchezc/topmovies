@@ -11,6 +11,7 @@ class MovieViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var filteredMovies: [Movie] = []
     @Published var searchResults: [Movie] = []
+    @Published var availableLanguages: [String: String] = [:]
 
     private let apiService = MovieAPIService()
 
@@ -31,6 +32,7 @@ class MovieViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.movies = movies
                     self.filteredMovies = movies
+                    self.extractLanguages(from: movies)
                 }
             case .failure(let error):
                 print("There was an error fetching the movies: \(error.localizedDescription)")
@@ -57,5 +59,16 @@ class MovieViewModel: ObservableObject {
 
     func searchMovies(by title: String) {
         searchResults = movies.filter { $0.title.lowercased().contains(title.lowercased()) }
+    }
+    
+    func extractLanguages(from movies: [Movie]) {
+        var languages = [String: String]()
+        for movie in movies {
+            let code = movie.originalLanguage
+            if let languageName = Locale.current.localizedString(forLanguageCode: code) {
+                languages[code] = languageName
+            }
+        }
+        availableLanguages = languages
     }
 }
