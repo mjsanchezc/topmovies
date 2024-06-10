@@ -31,7 +31,7 @@ TopMovies is an iOS application developed in Swift using SwiftUI. It follows the
 1. Clone the repository:
 
 ```bash
-  git clone git@github.com:mjsanchezc/topmovies.git
+git clone git@github.com:mjsanchezc/topmovies.git
 cd topmovies
 ```
     
@@ -46,6 +46,36 @@ pod install
 
     - Select your target device or simulator.
     - Click on the run button in Xcode or press Cmd+R.
+
+
+## Screenshots
+
+Right after finishing with the implementation of the basic list, filter and search features of the app the results for the first version were as follows:
+
+1. The main screen of the app where the movie lists can be seen in a Segment Control element where the user can choose to see the Popular or Top Rated movies, has a search bar and a filter button.
+
+![App Screenshot 1](PNGs/basic1.png)
+![App Screenshot 2](PNGs/basic2.png)
+
+2. The filter view where the user is able to check the Adult rating for the movies, filter by the movie's original language and average rating.
+
+![App Screenshot 3](PNGs/basic3.png)
+
+3. The filters in use and the results given:
+
+![App Screenshot 4](PNGs/basic4.png)
+![App Screenshot 5](PNGs/basic5.png)
+
+4. The search function in use and the results obtained:
+
+![App Screenshot 6](PNGs/basic6.png)
+
+
+After testing the basic features for the first verion of the app I determined the next steps to complete the project and improve it further was to implement the unit tests, improve the Language selection filter to be user friendly and improve the UI.
+
+Once implemented the tests and general improvements of the app's functionality the results wew as follows:
+
+1. 
 
 
 ## License
