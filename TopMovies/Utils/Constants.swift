@@ -11,4 +11,6 @@ struct Constants {
     static let apiKey = "b754a66fec917da54fa3a8604028bf5f"
     static let baseUrl = "https://api.themoviedb.org/3/"
     static let imageBaseUrl = "https://image.tmdb.org/t/p/w500"
+    static let emptyFilteredMoviesMessage = "No movies match the selected filters."
+    static let emptySearchedMoviesMessage = "No movies match your search."
 }

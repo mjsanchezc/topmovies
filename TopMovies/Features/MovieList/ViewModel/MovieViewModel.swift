@@ -12,6 +12,7 @@ class MovieViewModel: ObservableObject {
     @Published var filteredMovies: [Movie] = []
     @Published var searchResults: [Movie] = []
     @Published var availableLanguages: [String: String] = [:]
+    @Published var emptyMessage: String? = nil
 
     private let apiService: MovieAPIService
     
@@ -45,24 +46,26 @@ class MovieViewModel: ObservableObject {
     }
     
     func filterMovies(adult: Bool? = nil, language: String? = nil, minVote: Double? = nil, maxVote: Double? = nil) {
-            filteredMovies = movies.filter { movie in
-                // Adult filter
-                let matchesAdult = adult == nil || movie.adult == adult
-                
-                // Language filter
-                let lowercasedLanguage = language?.lowercased()
-                let lowercasedMovieLanguage = movie.originalLanguage.lowercased()
-                let matchesLanguage = lowercasedLanguage == nil || lowercasedMovieLanguage == lowercasedLanguage
-                
-                // Vote filter
-                let matchesVote = (minVote == nil || movie.voteAverage >= minVote!) && (maxVote == nil || movie.voteAverage <= maxVote!)
-                
-                return matchesAdult && matchesLanguage && matchesVote
-            }
+        filteredMovies = movies.filter { movie in
+            // Adult filter
+            let matchesAdult = adult == nil || movie.adult == adult
+            
+            // Language filter
+            let lowercasedLanguage = language?.lowercased()
+            let lowercasedMovieLanguage = movie.originalLanguage.lowercased()
+            let matchesLanguage = lowercasedLanguage == nil || lowercasedMovieLanguage == lowercasedLanguage
+            
+            // Vote filter
+            let matchesVote = (minVote == nil || movie.voteAverage >= minVote!) && (maxVote == nil || movie.voteAverage <= maxVote!)
+            
+            return matchesAdult && matchesLanguage && matchesVote
         }
+    emptyMessage = filteredMovies.isEmpty ? Constants.emptyFilteredMoviesMessage : nil
+    }
 
     func searchMovies(by title: String) {
         searchResults = movies.filter { $0.title.lowercased().contains(title.lowercased()) }
+        emptyMessage = searchResults.isEmpty ? Constants.emptySearchedMoviesMessage : nil
     }
     
     func extractLanguages(from movies: [Movie]) {

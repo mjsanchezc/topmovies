@@ -60,29 +60,40 @@ struct MovieContentView: View {
                 }
                 .padding(.bottom)
 
-                List(searchText.isEmpty ? movieViewModel.filteredMovies : movieViewModel.searchResults) { movie in
-                    HStack {
-                        if let posterPath = movie.posterPath {
-                            WebImage(url: URL(string: "\(Constants.imageBaseUrl)\(posterPath)"))
-                                .resizable()
-                                .placeholder {
-                                    Rectangle().foregroundColor(.gray)
-                                }
-                                .frame(width: 50, height: 75)
-                                .cornerRadius(8)
-                        } else {
-                            Rectangle()
-                                .foregroundColor(.gray)
-                                .frame(width: 50, height: 75)
-                                .cornerRadius(8)
-                        }
+                if let message = movieViewModel.emptyMessage {
+                HStack {
+                    Text(Constants.emptyFilteredMoviesMessage)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .frame(maxHeight: .infinity)
+                        .padding()
+                }
+                .padding()
+                } else {
+                    List(searchText.isEmpty ? movieViewModel.filteredMovies : movieViewModel.searchResults) { movie in
+                        HStack {
+                            if let posterPath = movie.posterPath {
+                                WebImage(url: URL(string: "\(Constants.imageBaseUrl)\(posterPath)"))
+                                    .resizable()
+                                    .placeholder {
+                                        Rectangle().foregroundColor(.gray)
+                                    }
+                                    .frame(width: 50, height: 75)
+                                    .cornerRadius(8)
+                            } else {
+                                Rectangle()
+                                    .foregroundColor(.gray)
+                                    .frame(width: 50, height: 75)
+                                    .cornerRadius(8)
+                            }
 
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(movie.title)
-                                .font(.headline)
-                            Text(movie.overview)
-                                .font(.subheadline)
-                                .lineLimit(3)
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(movie.title)
+                                    .font(.headline)
+                                Text(movie.overview)
+                                    .font(.subheadline)
+                                    .lineLimit(3)
+                            }
                         }
                     }
                 }

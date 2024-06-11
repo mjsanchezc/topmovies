@@ -75,7 +75,9 @@ After testing the basic features for the first verion of the app I determined th
 
 Once implemented the tests and general improvements of the app's functionality the results wew as follows:
 
-1. 
+1. After improving the Language picker in the Filter view for it to be more user friendly, now it takes the available languages from the presented list and includes them in the Language filter picker:
+
+![App Screenshot 7](PNGs/done1.png)
 
 
 ## License
