@@ -13,7 +13,11 @@ class MovieViewModel: ObservableObject {
     @Published var searchResults: [Movie] = []
     @Published var availableLanguages: [String: String] = [:]
 
-    private let apiService = MovieAPIService()
+    private let apiService: MovieAPIService
+    
+    init(apiService: MovieAPIService) {
+        self.apiService = apiService
+    }
 
     func fetchMovies(for segment: Int) {
         let endpoint: String

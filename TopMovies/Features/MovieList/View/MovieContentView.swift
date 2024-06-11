@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct MovieContentView: View {
-    @ObservedObject var movieViewModel = MovieViewModel()
+    @ObservedObject var movieViewModel = MovieViewModel(apiService: MovieAPIService())
 
     @State private var selectedSegment = 0
     @State private var searchText = ""
@@ -58,7 +58,7 @@ struct MovieContentView: View {
                         )
                     }
                 }
-                .padding()
+                .padding(.bottom)
 
                 List(searchText.isEmpty ? movieViewModel.filteredMovies : movieViewModel.searchResults) { movie in
                     HStack {

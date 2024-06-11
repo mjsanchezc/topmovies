@@ -1,14 +1,13 @@
 //
-//  TopMoviesTests.swift
-//  TopMoviesTests
+//  TopMoviesUnitTests.swift
+//  TopMoviesUnitTests
 //
-//  Created by Maria José Sánchez Cairazco on 9/06/24.
+//  Created by Maria José Sánchez Cairazco on 10/06/24.
 //
 
 import XCTest
-@testable import TopMovies
 
-final class TopMoviesTests: XCTestCase {
+final class TopMoviesUnitTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -28,7 +27,7 @@ final class TopMoviesTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
